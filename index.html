@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sinovuyo Fusa - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #99ccff 0%, #e6f2ff 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #003366 0%, #0059b3 100%);
+            color: white;
+            padding: 30px 20px;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .datetime {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header-content {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .header-content h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #fff, #e6f2ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .student-id {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        /* Profile Image */
+        .profile-section {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .profile-img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Content Sections */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            margin: 30px 0;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .section-title {
+            text-align: center;
+            color: #003366;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-text {
+            text-align: center;
+            font-size: 1.3em;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+
+        .highlight {
+            color: #003366;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        /* Career Interests Grid */
+        .career-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .career-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: left;
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .career-card:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            transform: rotate(30deg);
+        }
+
+        .career-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .career-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .career-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .career-card p {
+            opacity: 0.9;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Achievements Section */
+        .achievements-section {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievements-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .achievement-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .achievement-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .achievement-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .achievement-year {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        /* Links Section */
+        .links-section {
+            text-align: center;
+        }
+
+        .links-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .link-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px 30px;
+            background: linear-gradient(135deg, #003366 0%, #0059b3 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 18px rgba(0, 51, 102, 0.3);
+        }
+
+        .link-card:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 51, 102, 0.4);
+            background: linear-gradient(135deg, #0059b3 0%, #0073e6 100%);
+        }
+
+        .link-icon {
+            font-size: 1.5em;
+        }
+
+        /* Music Section */
+        .music-section {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .music-player {
+            max-width: 400px;
+            margin: 20px auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .music-player audio {
+            width: 100%;
+            outline: none;
+        }
+
+        /* Project Section */
+        .project-section {
+            text-align: center;
+        }
+
+        .project-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 40px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.3em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+            margin: 20px 0;
+        }
+
+        .project-button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(255, 107, 107, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #003366 0%, #0059b3 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-content p {
+            margin: 5px 0;
+            opacity: 0.9;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2.2em;
+            }
+
+            .datetime {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin-bottom: 15px;
+                text-align: center;
+            }
+
+            .section {
+                padding: 30px 20px;
+            }
+
+            .career-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .links-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .link-card {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="datetime" id="datetime"></div>
+        <div class="header-content">
+            <h1>Sinovuyo Fusa</h1>
+            <p class="student-id">Student Number: 231170637</p>
+        </div>
+    </header>
+
+    <!-- Profile Section -->
+    <section class="profile-section fade-in">
+        <img src="images/me.jpg" alt="Sinovuyo Fusa" class="profile-img">
+    </section>
+
+    <div class="container">
+        <!-- About Section -->
+        <section class="section fade-in">
+            <h2 class="section-title">About Me</h2>
+            <p class="about-text">
+                Hello! I'm <span class="highlight">Sinovuyo Fusa</span>, a passionate technology innovator, 
+                problem solver, and dedicated scholar committed to pushing the boundaries of what's possible 
+                in software engineering, data science, and space technology.
+            </p>
+        </section>
+
+        <!-- Career Interests Section -->
+        <section class="section fade-in">
+            <h2 class="section-title">Career Interests & Expertise</h2>
+            <div class="career-grid">
+                <div class="career-card">
+                    <div class="career-icon">🚀</div>
+                    <h3>Astronomy & Space Science</h3>
+                    <p>I'm passionate about exploring the cosmos, understanding celestial phenomena, and advancing space technology. The mysteries of the universe drive my curiosity and research interests in astrophysics and space exploration.</p>
+                </div>
+                
+                <div class="career-card">
+                    <div class="career-icon">📊</div>
+                    <h3>Data Science & Analytics</h3>
+                    <p>I'm passionate about extracting insights from complex datasets, building predictive models, and using data-driven approaches to solve real-world problems across various domains including business intelligence and scientific research.</p>
+                </div>
+                
+                <div class="career-card">
+                    <div class="career-icon">💻</div>
+                    <h3>Software Engineering</h3>
+                    <p>I'm passionate about creating efficient, scalable software solutions, following best practices in development, and building applications that make a positive impact on users' lives through innovative technology solutions.</p>
+                </div>
+                
+                <div class="career-card">
+                    <div class="career-icon">🔒</div>
+                    <h3>Cyber Security</h3>
+                    <p>I'm passionate about protecting digital assets, understanding threat landscapes, and implementing robust security measures to safeguard information in our increasingly connected world against emerging cyber threats.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section class="section achievements-section fade-in">
+            <h2 class="section-title" style="color: white;">🎖️ Academic & Professional Achievements</h2>
+            <p style="text-align: center; opacity: 0.9; margin-bottom: 30px; font-size: 1.1em;">
+                Recognized excellence in technology, science, and innovation
+            </p>
+            
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <span class="achievement-icon">🏆</span>
+                    <div class="achievement-title">Hackathon Winner</div>
+                    <div>National Coding Innovation Challenge</div>
+                    <div class="achievement-year">2025</div>
+                </div>
+                
+                <div class="achievement-card">
+                    <span class="achievement-icon">🛡️</span>
+                    <div class="achievement-title">Cyber Security Certified</div>
+                    <div>CompTIA Security+ Professional</div>
+                    <div class="achievement-year">2025</div>
+                </div>
+                
+                <div class="achievement-card">
+                    <span class="achievement-icon">🔭</span>
+                    <div class="achievement-title">NASSP Astronomy Certified</div>
+                    <div>National Astrophysics & Space Science Programme</div>
+                    <div class="achievement-year">2025</div>
+                </div>
+                
+                <div class="achievement-card">
+                    <span class="achievement-icon">🎓</span>
+                    <div class="achievement-title">BSc in Physics & Computer Science</div>
+                    <div>Walter Sisulu University</div>
+                    <div class="achievement-year">2025</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Links Section -->
+        <section class="section links-section fade-in">
+            <h2 class="section-title">Professional Profiles</h2>
+            <div class="links-grid">
+                <a href="https://www.linkedin.com/in/sinovuyo-fusa" target="_blank" class="link-card">
+                    <span class="link-icon">🔗</span>
+                    LinkedIn Profile
+                </a>
+                <a href="https://github.com/Sinovuyo209" target="_blank" class="link-card">
+                    <span class="link-icon">💻</span>
+                    GitHub Portfolio
+                </a>
+            </div>
+        </section>
+
+        <!-- Music Section -->
+        <section class="section music-section fade-in">
+            <h2 class="section-title" style="color: white;">🎵 Featured Inspiration Track</h2>
+            <div class="music-player">
+                <audio controls autoplay loop>
+                    <source src="media/favourite.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+            <p style="opacity: 0.8; margin-top: 15px; font-size: 0.95em;">
+                Music plays automatically to enhance your browsing experience
+            </p>
+        </section>
+
+        <!-- Project Section -->
+        <section class="section project-section fade-in">
+            <h2 class="section-title">Explore My Work</h2>
+            <p style="font-size: 1.1em; color: #555; margin-bottom: 20px;">
+                Discover my latest project that bridges communities with technology
+            </p>
+            <a href="project.html" class="project-button">
+                🚀 View Community Connect Project
+            </a>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Sinovuyo Fusa | Innovative Technology Portfolio</p>
+            <p>Bridging Technology and Human Potential</p>
+        </div>
+    </footer>
+
+    <script>
+        // Update real-time clock in top-left corner
+        function updateDateTime() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            };
+            const datetime = now.toLocaleDateString('en-US', options);
+            document.getElementById('datetime').textContent = datetime;
+        }
+        
+        // Update every second
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+
+        // Auto-play music with enhanced error handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const audio = document.querySelector('audio');
+            if (audio) {
+                // Try to play automatically
+                const playPromise = audio.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.catch(function(error) {
+                        console.log('Auto-play was prevented: ', error);
+                        // Show custom play message
+                        const musicSection = document.querySelector('.music-section');
+                        const message = document.createElement('p');
+                        message.style.color = 'rgba(255,255,255,0.8)';
+                        message.style.marginTop = '10px';
+                        message.style.fontSize = '0.9em';
+                        message.textContent = 'Click the play button to start music';
+                        musicSection.appendChild(message);
+                    });
+                }
+            }
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for scroll animations
+        document.querySelectorAll('.section').forEach(function(section) {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
